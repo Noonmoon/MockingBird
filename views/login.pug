@@ -1,0 +1,29 @@
+body.container
+  .page-header
+    h1 Simple Auth-System
+  nav.navbar.navbar-default
+    .container-fluid
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li
+            a(href='/') Home
+          li
+            a(href='/register') Sign Up
+          li
+            a(href='/dashboard') Dashboard
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href='/login') Log In
+          li
+            a(href='/logout') Log Out
+  .container.row
+    .jumbotron.col-sm-4.pull-center
+      form(action='/login', method='post')
+        div
+          label Username:
+          input(type='text', name='username')
+        div
+          label Password:
+          input(type='password', name='password')
+        div
+          input.btn.btn-primary(type='submit', value='Log In')

@@ -1,29 +1,22 @@
-var express = require('express')
+const express = require('express')
 const router = express.Router();
-const uuid = require('uuid/v4');
-var app = express()
+const app = express();
 
-// router.use((req, res, next) => {
-//     res.locals.user = req.user;
-//     next();
-// });
+// route for Home-Page
+router.get('/', function(req, res) {
+  res.render('index');
+});
 
-// respond with "hello world" when a GET request is made to the homepage
-router.get('/', function (req, res) {
-  res.render('index.pug')
-})
+// route for user signup
+router.route('/register')
+  .get((req, res) => {
+    res.render('register.pug');
+  })
 
-router.get('/registration', function(req, res) {
-  res.render('register')
-})
-
-router.get('/login', function(req, res) {
-  res.render('login')
-})
-
-router.get('/user/:id', function(req, res) {
-  res.render('user-profile')
-})
-
+// route for user Login
+router.route('/login')
+  .get((req, res) => {
+    res.render('login.pug');
+  })
 
 module.exports = router;

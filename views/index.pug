@@ -1,0 +1,21 @@
+extends layout.pug
+
+block append head
+  script(src="https://unpkg.com/sweetalert/dist/sweetalert.min.js")
+
+block content
+  body.container.page-header
+    h1 Simple Auth-System
+      ul.col
+        li
+          a(href='/') Home
+        li
+          a(href='/signup') Sign Up
+        li
+          a(href='/dashboard') Dashboard
+      ul.col
+        li
+          a(href='/login') Log In
+        li
+          a(href='/logout') Log Out
+
