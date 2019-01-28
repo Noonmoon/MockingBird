@@ -1,6 +1,7 @@
-body.container
-  .page-header
-    h1 Simple Auth-System
+extends layout.pug
+
+block content
+  h1 Simple Auth-System
   nav.navbar.navbar-default
     .container-fluid
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
@@ -16,17 +17,25 @@ body.container
             a(href='/login') Log In
           li
             a(href='/logout') Log Out
+
+  if errors
+    each val in errors
+      div.alert.alert-danger= val.msg
+
   .container.row
     .jumbotron.col-sm-4.pull-center
       form(action='/register', method='post')
-        div
-          label Username:
-          input(type='text', name='username')
-        div
-          label Email:
-          input(type='text', name='email')
-        div
-          label Password:
-          input(type='password', name='password')
+        div.form-group
+          label(for='user') Username:
+          input#user.form-control(type='text', name='username')
+        div.form-group
+          label(for='email') Email:
+          input#email.form-control(type='text', name='email')
+        div.form-group
+          label(for='pass') Password:
+          input#pass.form-control(type='password', name='password')
+        div.form-group
+          label(for='pass-match') Password:
+          input#pass-match.form-control(type='password', name='passwordMatch')
         div
           input.btn.btn-primary(type='submit', value='Sign Up')
