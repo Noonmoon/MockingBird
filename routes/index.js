@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router();
 
 var expressValidator = require('express-validator');
+var passport = require('passport')
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -9,8 +10,19 @@ router.use(expressValidator())
 
 // route for Home-Page
 router.get('/', function(req, res, next) {
+  console.log(req.user)
+  console.log(req.isAuthenticated())
   res.render('index', { title: 'Home' });
 });
+
+router.get('/profile', authenticationMiddleware(), function(req, res) {
+  res.render('profile', { title: 'Profile' })
+})
+
+// route for user Login
+router.get('/login', function(req, res) {
+  res.render('login', { title: 'Login'});
+})
 
 // route for user signup
 router.get('/register', function(req, res, next) {
@@ -49,15 +61,37 @@ router.post('/register', function(req, res, next) {
       db.query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, hash], function(error, results, fields) {
         if (error) throw error;
 
-        res.render('index', {title: 'Registration Complete'});
+        db.query('SELECT LAST_INSERT_ID() as user_id', function(err, results, fields) {
+          if (error) throw error;
+
+          const user_id = results[0]
+
+          req.login(user_id, function(err) {
+            res.redirect('/');
+          })
+        })
       })
     })
   }
 });
 
-// route for user Login
-router.get('/login', function(req, res) {
-  res.render('login.pug');
+passport.serializeUser(function(user_id, done) {
+  done(null, user_id)
 })
+
+passport.deserializeUser(function(user_id, done) {
+  done(null, user_id)
+})
+
+function authenticationMiddleware() {
+  return (req, res, next) => {
+    console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+
+    if (req.isAuthenticated()) return next();
+
+    res.redirect('/login')
+  }
+}
+
 
 module.exports = router;

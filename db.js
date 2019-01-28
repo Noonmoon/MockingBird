@@ -5,8 +5,7 @@ var connection = mysql.createConnection({
   user     : secret.DB_USER,
   password : secret.DB_PASSWORD,
   database : secret.DB_NAME,
-  port: 3306,
-  debug: true
+  port: 3306
 })
 
 connection.connect()
