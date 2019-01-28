@@ -1,12 +1,15 @@
-const express = require('express')
-const router = express.Router();
-const app = express();
+var express = require('express')
+var router = express.Router();
+
 var expressValidator = require('express-validator');
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 router.use(expressValidator())
 
 // route for Home-Page
 router.get('/', function(req, res, next) {
-  res.render('index');
+  res.render('index', { title: 'Home' });
 });
 
 // route for user signup
@@ -42,10 +45,12 @@ router.post('/register', function(req, res, next) {
 
     const db = require('../db.js');
 
-    db.query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, password], function(error, results, fields) {
-      if (error) throw error;
+    bcrypt.hash(password, saltRounds, function(err, hash){
+      db.query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, hash], function(error, results, fields) {
+        if (error) throw error;
 
-      res.render('index', {title: 'Registration Complete'});
+        res.render('index', {title: 'Registration Complete'});
+      })
     })
   }
 });
