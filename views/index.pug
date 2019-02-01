@@ -2,228 +2,144 @@ extends layout.pug
 
 block append head
   script(src="https://unpkg.com/sweetalert/dist/sweetalert.min.js")
-  style.
-    .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    }
-    @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-    }
-    }
+  link(rel="favicon.ico" href="favicon.ico" type="image/x-icon")
+  link(rel="stylesheet" type="text/css" href="css/index.css")
   link(href='https://fonts.googleapis.com/css?family=Playfair+Display:700,900', rel='stylesheet')
 
 block content
-
-  .container
-    header.blog-header.py-3
-      .row.flex-nowrap.justify-content-between.align-items-center
-        .col-4.pt-1
-          a.text-muted(href='#') Subscribe
-        .col-4.text-center
-          a.blog-header-logo.text-dark(href='#') Large
-        .col-4.d-flex.justify-content-end.align-items-center
-          a.text-muted(href='#')
-            svg.mx-3(xmlns='http://www.w3.org/2000/svg', width='20', height='20', viewBox='0 0 24 24', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round', focusable='false', role='img')
-              title Search
-              circle(cx='10.5', cy='10.5', r='7.5')
-              line(x1='21', y1='21', x2='15.8', y2='15.8')
-          a.btn.btn-sm.btn-outline-secondary(href='register') Sign up
-          a.btn.btn-sm.btn-outline-secondary(href='profile') Login
-          a.btn.btn-sm.btn-outline-secondary(href='profile') Logout
-          a.btn.btn-sm.btn-outline-secondary(href='profile') Profile
-    .nav-scroller.py-1.mb-2
-      nav.nav.d-flex.justify-content-between
-        a.p-2.text-muted(href='#') Recipes
-        a.p-2.text-muted(href='#') Remedies
-        a.p-2.text-muted(href='#') Aromatherepy
-        a.p-2.text-muted(href='#') Wellness
-        a.p-2.text-muted(href='#') Spirituality
-    .jumbotron.p-3.p-md-5.text-white.rounded.bg-dark
-      .col-md-6.px-0
-        h1.display-4.font-italic Title of a longer featured blog post
-        p.lead.my-3
-          | Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.
-        p.lead.mb-0
-          a.text-white.font-weight-bold(href='#') Continue reading...
-    .row.mb-2
-      .col-md-6
-        .card.flex-md-row.mb-4.shadow-sm.h-md-250
-          .card-body.d-flex.flex-column.align-items-start
-            strong.d-inline-block.mb-2.text-primary World
-            h3.mb-0
-              a.text-dark(href='#') Featured post
-            .mb-1.text-muted Nov 12
-            p.card-text.mb-auto
-              | This is a wider card with supporting text below as a natural lead-in to additional content.
-            a(href='#') Continue reading
-          svg.bd-placeholder-img.card-img-right.flex-auto.d-none.d-lg-block(width='200', height='250', xmlns='http://www.w3.org/2000/svg', preserveAspectRatio='xMidYMid slice', focusable='false', role='img', aria-label='Placeholder: Thumbnail')
-            title Placeholder
-            rect(fill='#55595c', width='100%', height='100%')
-            text(fill='#eceeef', dy='.3em', x='50%', y='50%') Thumbnail
-      .col-md-6
-        .card.flex-md-row.mb-4.shadow-sm.h-md-250
-          .card-body.d-flex.flex-column.align-items-start
-            strong.d-inline-block.mb-2.text-success Design
-            h3.mb-0
-              a.text-dark(href='#') Post title
-            .mb-1.text-muted Nov 11
-            p.card-text.mb-auto
-              | This is a wider card with supporting text below as a natural lead-in to additional content.
-            a(href='#') Continue reading
-          svg.bd-placeholder-img.card-img-right.flex-auto.d-none.d-lg-block(width='200', height='250', xmlns='http://www.w3.org/2000/svg', preserveAspectRatio='xMidYMid slice', focusable='false', role='img', aria-label='Placeholder: Thumbnail')
-            title Placeholder
-            rect(fill='#55595c', width='100%', height='100%')
-            text(fill='#eceeef', dy='.3em', x='50%', y='50%') Thumbnail
-  main.container(role='main')
-    .row
-      .col-md-8.blog-main
-        h3.pb-3.mb-4.font-italic.border-bottom
-          | From the Firehose
-        .blog-post
-          h2.blog-post-title Sample blog post
-          p.blog-post-meta
-            | January 1, 2014 by
-            a(href='#') Mark
-          p
-            | This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, images, and code are all supported.
-          hr
-          p
-            | Cum sociis natoque penatibus et magnis
-            a(href='#') dis parturient montes
-            | , nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
-          blockquote
-            p
-              | Curabitur blandit tempus porttitor.
-              strong Nullam quis risus eget urna mollis
-              |  ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
-          p
-            | Etiam porta
-            em sem malesuada magna
-            |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+  header
+    nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
+      a.navbar-brand(href='#') Group Chat
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarCollapse', aria-controls='navbarCollapse', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarCollapse.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link(href='/')
+              | Home
+              span.sr-only (current)
+          li.nav-item
+            a.nav-link(href='/register') Sign Up
+          li.nav-item
+            a.nav-link(href='/login') Log In
+          li.nav-item
+            a.nav-link(href='/profile') Profile
+        form.form-inline.mt-2.mt-md-0
+          input.form-control.mr-sm-2(type='text', placeholder='Search', aria-label='Search')
+          button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+  main(role='main')
+    #myCarousel.carousel.slide(data-ride='carousel')
+      ol.carousel-indicators
+        li.active(data-target='#myCarousel', data-slide-to='0')
+        li(data-target='#myCarousel', data-slide-to='1')
+        li(data-target='#myCarousel', data-slide-to='2')
+      .carousel-inner
+        .carousel-item.active
+          img.first-slide(src='data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', alt='First slide')
+          .container
+            .carousel-caption.text-left
+              h1 Example headline.
+              p
+                | Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+              p
+                a.btn.btn-lg.btn-primary(href='#', role='button') Sign up today
+        .carousel-item
+          img.second-slide(src='data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', alt='Second slide')
+          .container
+            .carousel-caption
+              h1 Another example headline.
+              p
+                | Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+              p
+                a.btn.btn-lg.btn-primary(href='#', role='button') Learn more
+        .carousel-item
+          img.third-slide(src='data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', alt='Third slide')
+          .container
+            .carousel-caption.text-right
+              h1 One more for good measure.
+              p
+                | Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+              p
+                a.btn.btn-lg.btn-primary(href='#', role='button') Browse gallery
+      a.carousel-control-prev(href='#myCarousel', role='button', data-slide='prev')
+        span.carousel-control-prev-icon(aria-hidden='true')
+        span.sr-only Previous
+      a.carousel-control-next(href='#myCarousel', role='button', data-slide='next')
+        span.carousel-control-next-icon(aria-hidden='true')
+        span.sr-only Next
+    //
+      Marketing messaging and featurettes
+      ==================================================
+    // Wrap the rest of the page in another container to center all the content.
+    .container.marketing
+      // Three columns of text below the carousel
+      .row
+        .col-lg-4
+          img.rounded-circle(src='data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', alt='Generic placeholder image', width='140', height='140')
           h2 Heading
           p
-            | Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-          h3 Sub-heading
+            | Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.
           p
-            | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-          pre.
+            a.btn.btn-secondary(href='#', role='button') View details »
+        // /.col-lg-4
+        .col-lg-4
+          img.rounded-circle(src='data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', alt='Generic placeholder image', width='140', height='140')
+          h2 Heading
           p
-            | Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.
-          h3 Sub-heading
+            | Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
           p
-            | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-          ul
-            li Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            li Donec id elit non mi porta gravida at eget metus.
-            li Nulla vitae elit libero, a pharetra augue.
+            a.btn.btn-secondary(href='#', role='button') View details »
+        // /.col-lg-4
+        .col-lg-4
+          img.rounded-circle(src='data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', alt='Generic placeholder image', width='140', height='140')
+          h2 Heading
           p
-            | Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
-          ol
-            li Vestibulum id ligula porta felis euismod semper.
-            li
-              | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            li Maecenas sed diam eget risus varius blandit sit amet non magna.
+            | Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
           p
-            | Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.
-        // /.blog-post
-        .blog-post
-          h2.blog-post-title Another blog post
-          p.blog-post-meta
-            | December 23, 2013 by
-            a(href='#') Jacob
+            a.btn.btn-secondary(href='#', role='button') View details »
+        // /.col-lg-4
+        // /.row
+        // START THE FEATURETTES
+        hr.featurette-divider
+        .row.featurette
+          .col-md-7
+            h2.featurette-heading
+              | First featurette heading.
+              span.text-muted It'll blow your mind.
+            p.lead
+              | Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+          .col-md-5
+            img.featurette-image.img-fluid.mx-auto(data-src='holder.js/500x500/auto', alt='Generic placeholder image')
+        hr.featurette-divider
+        .row.featurette
+          .col-md-7.order-md-2
+            h2.featurette-heading
+              | Oh yeah, it's that good.
+              span.text-muted See for yourself.
+            p.lead
+              | Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+          .col-md-5.order-md-1
+            img.featurette-image.img-fluid.mx-auto(data-src='holder.js/500x500/auto', alt='Generic placeholder image')
+        hr.featurette-divider
+        .row.featurette
+          .col-md-7
+            h2.featurette-heading
+              | And lastly, this one.
+              span.text-muted Checkmate.
+            p.lead
+              | Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+          .col-md-5
+            img.featurette-image.img-fluid.mx-auto(data-src='holder.js/500x500/auto', alt='Generic placeholder image')
+        hr.featurette-divider
+        // /END THE FEATURETTES
+        // /.container
+        // FOOTER
+        footer.container
+          p.float-right
+            a(href='#') Back to top
           p
-            | Cum sociis natoque penatibus et magnis
-            a(href='#') dis parturient montes
-            | , nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
-          blockquote
-            p
-              | Curabitur blandit tempus porttitor.
-              strong Nullam quis risus eget urna mollis
-              |  ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
-          p
-            | Etiam porta
-            em sem malesuada magna
-            |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-          p
-            | Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-        // /.blog-post
-        .blog-post
-          h2.blog-post-title New feature
-          p.blog-post-meta
-            | December 14, 2013 by
-            a(href='#') Chris
-          p
-            | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-          ul
-            li Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            li Donec id elit non mi porta gravida at eget metus.
-            li Nulla vitae elit libero, a pharetra augue.
-          p
-            | Etiam porta
-            em sem malesuada magna
-            |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-          p
-            | Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
-        // /.blog-post
-        nav.blog-pagination
-          a.btn.btn-outline-primary(href='#') Older
-          a.btn.btn-outline-secondary.disabled(href='#') Newer
-      // /.blog-main
-      aside.col-md-4.blog-sidebar
-        .p-3.mb-3.bg-light.rounded
-          h4.font-italic About
-          p.mb-0
-            | Etiam porta
-            em sem malesuada magna
-            |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-        .p-3
-          h4.font-italic Archives
-          ol.list-unstyled.mb-0
-            li
-              a(href='#') March 2014
-            li
-              a(href='#') February 2014
-            li
-              a(href='#') January 2014
-            li
-              a(href='#') December 2013
-            li
-              a(href='#') November 2013
-            li
-              a(href='#') October 2013
-            li
-              a(href='#') September 2013
-            li
-              a(href='#') August 2013
-            li
-              a(href='#') July 2013
-            li
-              a(href='#') June 2013
-            li
-              a(href='#') May 2013
-            li
-              a(href='#') April 2013
-        .p-3
-          h4.font-italic Elsewhere
-          ol.list-unstyled
-            li
-              a(href='#') GitHub
-            li
-              a(href='#') Twitter
-            li
-              a(href='#') Facebook
-      // /.blog-sidebar
-      // /.row
-  // /.container
-  footer.blog-footer
-    p
-      | Blog template built for
-      a(href='https://getbootstrap.com/') Bootstrap
-      |  by
-      a(href='https://twitter.com/mdo') @mdo
-      | .
-    p
-      a(href='#') Back to top
+            | © 2017-2018 Company, Inc. ·
+            a(href='#') Privacy
+            |  ·
+            a(href='#') Terms
 

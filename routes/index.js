@@ -21,16 +21,20 @@ router.get('/profile', authenticationMiddleware(), function(req, res) {
 
 // route for user Login
 router.get('/login', function(req, res) {
-  res.render('login', { title: 'Login'});
+  res.render('login', { title: 'Login' });
 })
+
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/profile',
+  failureRedirect: '/login'
+}));
 
 // route for user signup
 router.get('/register', function(req, res, next) {
-  res.render('register');
+  res.render('register', { title: 'Registration' });
 });
 
 router.post('/register', function(req, res, next) {
-
   req.checkBody('username', 'Username field cannot be empty.').notEmpty();
   req.checkBody('username', 'Username must be between 3-15 characters long.').len(3, 15);
   req.checkBody('email', 'The email you entered is invalid, please try again.').isEmail();
@@ -48,9 +52,7 @@ router.post('/register', function(req, res, next) {
       title: 'Registration Error',
       errors: errors
     })
-
   } else {
-
     let username = req.body.username;
     let password = req.body.password
     let email = req.body.email
