@@ -18,12 +18,16 @@ block content
             a.nav-link(href='/')
               | Home
               span.sr-only (current)
-          li.nav-item
-            a.nav-link(href='/register') Sign Up
-          li.nav-item
-            a.nav-link(href='/login') Log In
-          li.nav-item
-            a.nav-link(href='/profile') Profile
+          if isAuthenticated
+            li.nav-item
+              a.nav-link(href='/profile') Profile
+            li.nav-item
+              a.nav-link(href='/logout') Log Out
+          else
+            li.nav-item
+              a.nav-link(href='/register') Sign Up
+            li.nav-item
+              a.nav-link(href='/login') Log In
         form.form-inline.mt-2.mt-md-0
           input.form-control.mr-sm-2(type='text', placeholder='Search', aria-label='Search')
           button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search

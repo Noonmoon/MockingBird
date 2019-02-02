@@ -49,34 +49,35 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function (req, res, next) {
+  res.locals.isAuthenticated = req.isAuthenticated();
+
+  next();
+})
+
 app.use('/', indexRouter);
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
     const db = require('./db')
 
-    db.query('SELECT password FROM users WHERE username = ?', [username], function(err, results, fields) {
+    db.query('SELECT id, password FROM users WHERE username = ?', [username], function(err, results, fields) {
       if (err) done(err);
 
       if (results.length === 0) {
         done(null, false);
+      } else {
+        const hash = results[0].password.toString()
+
+        bcrypt.compare(password, hash, function(err, response) {
+          if (response === true) {
+            return done(null, {user_id: results[0].id});
+          } else {
+            return done(null, false);
+          }
+        })
       }
-
-      console.log(results[0].password.toString())
-      const hash = results[0].password.toString()
-
-      bcrypt.compare(password, hash, function(err, response) {
-        if (response) {
-          return done(null, {user_id: 43});
-        } else {
-          return done(null, false);
-        }
-      })
-
-      return done(null, 'fdffds')
     })
-
-    return done(null, 'asdf');
   }
 ));
 
