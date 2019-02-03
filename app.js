@@ -44,11 +44,12 @@ app.use(session({
     resave: false,
     store: sessionStore,
     saveUninitialized: false,
-    // cookie: { secure: true }
+    // cookie: { secure: true } for https
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+// set global variables
 app.use(function (req, res, next) {
   res.locals.isAuthenticated = req.isAuthenticated();
 

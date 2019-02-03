@@ -10,13 +10,21 @@ router.use(expressValidator())
 
 // route for Home-Page
 router.get('/', function(req, res, next) {
-  console.log(req.user)
-  console.log(req.isAuthenticated())
   res.render('index', { title: 'Home' });
 });
 
 router.get('/profile', authenticationMiddleware(), function(req, res) {
-  res.render('profile', { title: 'Profile' })
+  user_id = req.session.passport.user.user_id;
+
+  const db = require('../db.js');
+
+  db.query('SELECT username FROM USERS WHERE ID = ?', [user_id], function(err, results, fields) {
+    if (err) throw err;
+
+    const username = results[0]
+    res.render('profile', { title: 'Profile', username: username })
+  })
+
 })
 
 // route for user Login

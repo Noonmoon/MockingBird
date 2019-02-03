@@ -1,6 +1,11 @@
 extends layout.pug
 
+block append head
+  link(rel="stylesheet" type="text/css" href="stylesheets/profile.css")
+  script(href="scripts/profile.js")
+
 block content
+  - let name = username.username;
   div.user-container.container
-    h1 name
+    h1= name
     p bio
