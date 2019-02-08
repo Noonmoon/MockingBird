@@ -32,5 +32,15 @@ block content
   main(role='main')
     - let name = username.username;
     div.user-container.container
-      h1= name
+      h1=(name)
       p bio
+    .form-container
+      form(action='/post', method='post')
+        div.form-group
+          label(for='status') Status:
+          textarea#status.form-control(type='textbox', name='status')
+        div
+          input.btn.btn-primary(type='submit', value='Post')
+    div.posts
+      h1 no posts yet
+
