@@ -28,8 +28,8 @@ router.get('/login', function(req, res) {
 })
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/profile',
-  failureRedirect: '/login'
+  successRedirect: '/user/profile',
+  failureRedirect: '/user/login'
 }));
 
 router.get('/logout', function(req, res) {
@@ -100,7 +100,7 @@ function authenticationMiddleware() {
 
     if (req.isAuthenticated()) return next();
 
-    res.redirect('/login')
+    res.redirect('/user/login')
   }
 }
 
