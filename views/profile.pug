@@ -5,42 +5,17 @@ block append head
   script(href="scripts/profile.js")
 
 block content
-  header
-    nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
-      a.navbar-brand(href='#') Mocking Bird
-      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarCollapse', aria-controls='navbarCollapse', aria-expanded='false', aria-label='Toggle navigation')
-        span.navbar-toggler-icon
-      #navbarCollapse.collapse.navbar-collapse
-        ul.navbar-nav.mr-auto
-          li.nav-item
-            a.nav-link(href='/')
-              | Home
-              span.sr-only (current)
-          if isAuthenticated
-            li.nav-item.active
-              a.nav-link(href='/profile') Profile
-            li.nav-item
-              a.nav-link(href='/logout') Log Out
-          else
-            li.nav-item
-              a.nav-link(href='/register') Sign Up
-            li.nav-item
-              a.nav-link(href='/login') Log In
-        form.form-inline.mt-2.mt-md-0
-          input.form-control.mr-sm-2(type='text', placeholder='Search', aria-label='Search')
-          button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+  - let name = username.username;
   main(role='main')
-    - let name = username.username;
-    div.user-container.container
-      h1=(name)
-      p bio
-    .form-container
-      form(action='/post', method='post')
-        div.form-group
-          label(for='status') Status:
-          textarea#status.form-control(type='textbox', name='status')
-        div
-          input.btn.btn-primary(type='submit', value='Post')
     div.posts
-      h1 no posts yet
+      div.user-container.container
+        h1=(name)
+        p bio
+      .form-container
+        form(action='/profile', method='post')
+          div.form-group
+            textarea#status.form-control(type='textbox', name='status')
+          div
+            input.btn.btn-primary(type='submit', value='Post')
+        h1 no posts yet
 

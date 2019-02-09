@@ -16,6 +16,7 @@ var bcrypt = require('bcrypt')
 
 var app = express();
 var indexRouter = require('./routes/index');
+var userRouter = require('./routes/user')
 
 require('dotenv').config();
 
@@ -57,6 +58,7 @@ app.use(function (req, res, next) {
 })
 
 app.use('/', indexRouter);
+app.use('/user', userRouter);
 
 passport.use(new LocalStrategy(
   function(username, password, done) {

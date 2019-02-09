@@ -7,30 +7,6 @@ block append head
   link(href='https://fonts.googleapis.com/css?family=Playfair+Display:700,900', rel='stylesheet')
 
 block content
-  header
-    nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
-      a.navbar-brand(href='#') Mocking Bird
-      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarCollapse', aria-controls='navbarCollapse', aria-expanded='false', aria-label='Toggle navigation')
-        span.navbar-toggler-icon
-      #navbarCollapse.collapse.navbar-collapse
-        ul.navbar-nav.mr-auto
-          li.nav-item.active
-            a.nav-link(href='/')
-              | Home
-              span.sr-only (current)
-          if isAuthenticated
-            li.nav-item
-              a.nav-link(href='/profile') Profile
-            li.nav-item
-              a.nav-link(href='/logout') Log Out
-          else
-            li.nav-item
-              a.nav-link(href='/register') Sign Up
-            li.nav-item
-              a.nav-link(href='/login') Log In
-        form.form-inline.mt-2.mt-md-0
-          input.form-control.mr-sm-2(type='text', placeholder='Search for friends', aria-label='Search')
-          button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
   main(role='main').main
     .container.posts
       // Three columns of text below the carousel

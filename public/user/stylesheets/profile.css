@@ -1,0 +1,29 @@
+body {
+  padding-top: 4.5rem;
+  color: #5a5a5a;
+  background: #888daa;
+  background: -moz-linear-gradient(top, #888daa 0%, #888daa 0%, #626377 46%, #44465f 98%);
+  background: -webkit-linear-gradient(top, #888daa 0%, #888daa 0%, #626377 46%, #44465f 98%);
+  background: linear-gradient(to bottom, #888daa 0%, #888daa 0%, #626377 46%, #44465f 98%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#888daa", endColorstr="#44465f",GradientType=0 );
+}
+
+#status {
+  height: 100px;
+}
+
+.form-container {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.posts {
+  padding: 30px;
+  border-style: solid;
+  background: #BDC3C3;
+  margin: 50px 100px 0px 100px;
+  color: black;
+  height: 100%;
+}
+
+/*# sourceMappingURL=profile.css.map */
