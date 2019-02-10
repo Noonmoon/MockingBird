@@ -1,5 +1,6 @@
 var express = require('express')
 var router = express.Router();
+var moment = require('moment')
 
 var expressValidator = require('express-validator');
 var passport = require('passport')
@@ -30,6 +31,27 @@ router.get('/profile', authenticationMiddleware(), function(req, res) {
   })
 })
 
+router.post('/profile', authenticationMiddleware(), function(req, res) {
+  let user_id = req.session.passport.user.user_id;
+
+  const db = require('../db.js');
+
+  // RETRIEVE USERNAME FROM DB
+  db.query('SELECT username FROM USERS WHERE ID = ?', [user_id], function(err, results, fields) {
+    if (err) throw err;
+
+    // INSERT POSTS INTO DB
+    let username = results[0].username
+    let postText = req.body.text;
+    let postDatetime = moment().format('YYYY-MM-DD h:mm:ss');
+
+    db.query('INSERT INTO posts (date, text, user_id) VALUES (?, ?, ?)', [postDatetime, postText, username], function(err, results, fields) {
+      if (err) throw err;
+
+      res.redirect('back')
+    })
+  })
+})
 
 /* LOGIN/LOGOUT
 -------------------------------------------------- */

@@ -15,9 +15,9 @@ block content
         h1=(username)
         p bio
       .form-container
-        form(action='/profile', method='post')
+        form(action='/user/profile', method='post')
           div.form-group
-            textarea#status.form-control(type='textbox', name='status', data-gramm_editor="false")
+            textarea#status.form-control(type='textbox', name='text', data-gramm_editor="false")
           div
             input.btn.btn-primary(type='submit', value='Post')
         if (!posts[0])
