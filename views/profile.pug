@@ -1,15 +1,18 @@
 extends layout.pug
 
 block append head
+  script.
+    var name = "#{username}";
+    var posts = !{posts}
+
   link(rel="stylesheet" type="text/css" href="stylesheets/profile.css")
-  script(href="scripts/profile.js")
+  script(type='text/javascript' src='../scripts/profile.js')
 
 block content
-  - let name = username.username;
   main(role='main')
     div.posts
       div.user-container.container
-        h1=(name)
+        h1=(username)
         p bio
       .form-container
         form(action='/profile', method='post')
@@ -17,5 +20,8 @@ block content
             textarea#status.form-control(type='textbox', name='status', data-gramm_editor="false")
           div
             input.btn.btn-primary(type='submit', value='Post')
-        h1 no posts yet
+        if (!posts[0])
+          h1 no posts yet
+        else
+          ul#pl
 

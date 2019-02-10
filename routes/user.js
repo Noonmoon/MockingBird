@@ -8,21 +8,31 @@ const saltRounds = 10;
 
 router.use(expressValidator())
 
-router.get('/profile', authenticationMiddleware(), function(req, res) {
-  user_id = req.session.passport.user.user_id;
 
+/* PERSONAL PROFILE
+-------------------------------------------------- */
+router.get('/profile', authenticationMiddleware(), function(req, res) {
+  let user_id = req.session.passport.user.user_id;
   const db = require('../db.js');
 
+  // RETRIEVE USERNAME FROM DB
   db.query('SELECT username FROM USERS WHERE ID = ?', [user_id], function(err, results, fields) {
     if (err) throw err;
+    let username = results[0].username
 
-    const username = results[0]
-    res.render('profile', { title: 'Profile', username: username })
+    // RETRIEVE POSTS FROM DB
+    db.query('SELECT text, date FROM POSTS WHERE USER_ID = ?', [username.toString()], function(err, results, fields) {
+      if (err) throw err;
+      posts = results;
+
+      res.render('profile', { title: 'Profile', username: username, posts: JSON.stringify(posts) })
+    })
   })
-
 })
 
-// route for user Login
+
+/* LOGIN/LOGOUT
+-------------------------------------------------- */
 router.get('/login', function(req, res) {
   res.render('login', { title: 'Login' });
 })
@@ -38,7 +48,9 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 })
 
-// route for user signup
+
+/* REIGISTRATION
+-------------------------------------------------- */
 router.get('/register', function(req, res, next) {
   res.render('register', { title: 'Registration' });
 });
@@ -86,6 +98,9 @@ router.post('/register', function(req, res, next) {
   }
 });
 
+
+/* USER AUTH FUNCTIONS
+-------------------------------------------------- */
 passport.serializeUser(function(user_id, done) {
   done(null, user_id)
 })
