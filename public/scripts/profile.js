@@ -9,7 +9,6 @@ var escape = function(unsafe) {
  };
 
 console.log(name)
-console.log(posts[0].text)
 
 $(function () {
 var pList = $('#pl')

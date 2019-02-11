@@ -9,6 +9,39 @@ const saltRounds = 10;
 
 router.use(expressValidator())
 
+/* OTHER PROFILES
+-------------------------------------------------- */
+router.get('/profile/:id', function(req, res) {
+  let name = req.params.id;
+  let user_id = req.session.passport.user.user_id;
+  const db = require('../db.js');
+
+  if (user_id) {
+    // IF PERSON SEARCHED IS SELF REDIRECT TO OWN  PROFILE
+    db.query('SELECT username FROM USERS WHERE ID = ?', [user_id], function(err, results, fields) {
+      if (err) throw err;
+      let username = results[0].username
+
+      if (username === name) {
+        res.redirect('/user/profile')
+      } else {
+        db.query('SELECT text, date FROM POSTS WHERE USER_ID = ?', [name.toString()], function(err, results, fields) {
+        if (err) throw err;
+        posts = results;
+
+        res.render('profiles', { title: 'User Profile', username: name, posts: JSON.stringify(posts) })
+    })
+      }
+    })
+  } else {
+    db.query('SELECT text, date FROM POSTS WHERE USER_ID = ?', [name.toString()], function(err, results, fields) {
+      if (err) throw err;
+      posts = results;
+
+      res.render('profiles', { title: 'User Profile', username: username, posts: JSON.stringify(posts) })
+    })
+  }
+})
 
 /* PERSONAL PROFILE
 -------------------------------------------------- */

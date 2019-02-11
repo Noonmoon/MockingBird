@@ -14,14 +14,8 @@ block content
       div.user-container.container
         h1=(username)
         p bio
-      .form-container
-        form(action='/user/profile', method='post')
-          div.form-group
-            textarea#status.form-control(type='textbox', name='text', data-gramm_editor="false")
-          div
-            input.btn.btn-primary(type='submit', value='Post')
+
         if (!posts[0])
           h1 no posts yet
         else
           ul#pl
-
