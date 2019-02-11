@@ -13,7 +13,11 @@ router.use(expressValidator())
 -------------------------------------------------- */
 router.get('/profile/:id', function(req, res) {
   let name = req.params.id;
-  let user_id = req.session.passport.user.user_id;
+  let user_id;
+    console.log(req.session.passport)
+  if (req.session.passport) {
+    user_id = req.session.passport.user.user_id;
+  }
   const db = require('../db.js');
 
   if (user_id) {
@@ -38,7 +42,7 @@ router.get('/profile/:id', function(req, res) {
       if (err) throw err;
       posts = results;
 
-      res.render('profiles', { title: 'User Profile', username: username, posts: JSON.stringify(posts) })
+      res.render('profiles', { title: 'User Profile', username: name, posts: JSON.stringify(posts) })
     })
   }
 })
