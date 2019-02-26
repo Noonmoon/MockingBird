@@ -6,13 +6,12 @@ var escape = function(unsafe) {
    .replace(/>/g, "&gt;")
    .replace(/"/g, "&quot;")
    .replace(/'/g, "&#039;");
- };
+};
 
-console.log(name)
+
 
 $(function () {
-var pList = $('#pl')
-
+  var pList = $('#pl')
   posts.forEach(function(post) {
     var li = $('<li/>')
         .addClass('ui-menu-item')
@@ -24,4 +23,14 @@ var pList = $('#pl')
         .appendTo(li);
   })
 
+  console.log(following)
+  if (following) {
+    $('#follo').html('unfollow')
+    $('#follow').attr('action', `/user/unfollow/${name}`)
+  } else {
+    $('#follo').html('follow')
+    $('#follow').attr('action', `/user/follow/${name}`)
+  }
+
 });
+

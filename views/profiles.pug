@@ -4,6 +4,7 @@ block append head
   script.
     var name = "#{username}";
     var posts = !{posts}
+    var following = !{following}
 
   link(rel="stylesheet" type="text/css" href="/stylesheets/profile.css")
   script(type='text/javascript' src='/scripts/profile.js')
@@ -14,6 +15,8 @@ block content
       div.user-container.container
         h1=(username)
         p bio
+        form#follow(action=`` method="post")
+        button#follo(type="submit" form="follow" value="Submit")
 
         if (!posts[0])
           h1 no posts yet

@@ -9,19 +9,62 @@ const saltRounds = 10;
 
 router.use(expressValidator())
 
-/* OTHER PROFILES
+/* FOLLOWING PROFILES
 -------------------------------------------------- */
-router.get('/profile/:id', function(req, res) {
-  let name = req.params.id;
+router.post('/follow/:id', function(req, res) {
+  let following = req.params.id;
   let user_id;
-    console.log(req.session.passport)
+
   if (req.session.passport) {
     user_id = req.session.passport.user.user_id;
   }
   const db = require('../db.js');
 
   if (user_id) {
-    // IF PERSON SEARCHED IS SELF REDIRECT TO OWN  PROFILE
+    db.query('SELECT username FROM USERS WHERE ID = ?', [user_id], function(err, results, fields) {
+      let follower = results[0].username;
+      db.query('INSERT INTO followers (follower, following) VALUES (?, ?)', [follower, following], function(err, results, fields) {
+        res.redirect(`/user/profile/${following}`)
+      })
+    })
+  }
+})
+
+/* UNFOLLOWING PROFILES
+-------------------------------------------------- */
+router.post('/unfollow/:id', function(req, res) {
+  let following = req.params.id;
+  let user_id;
+
+  if (req.session.passport) {
+    user_id = req.session.passport.user.user_id;
+  }
+  const db = require('../db.js');
+
+  if (user_id) {
+    db.query('SELECT username FROM USERS WHERE ID = ?', [user_id], function(err, results, fields) {
+      let follower = results[0].username;
+      db.query('DELETE FROM followers WHERE (follower, following) = (?, ?)', [follower, following], function(err, results, fields) {
+        if (err) throw err;
+        res.redirect(`/user/profile/${following}`)
+      })
+    })
+  }
+})
+
+/* OTHER PROFILES
+-------------------------------------------------- */
+router.get('/profile/:id', function(req, res) {
+  let name = req.params.id;
+  let user_id;
+
+  if (req.session.passport) {
+    user_id = req.session.passport.user.user_id;
+  }
+  const db = require('../db.js');
+
+  if (user_id) {
+    // IF PERSON IS SELF REDIRECT TO OWN PROFILE
     db.query('SELECT username FROM USERS WHERE ID = ?', [user_id], function(err, results, fields) {
       if (err) throw err;
       let username = results[0].username
@@ -30,11 +73,19 @@ router.get('/profile/:id', function(req, res) {
         res.redirect('/user/profile')
       } else {
         db.query('SELECT text, date FROM POSTS WHERE USER_ID = ?', [name.toString()], function(err, results, fields) {
-        if (err) throw err;
-        posts = results;
-
-        res.render('profiles', { title: 'User Profile', username: name, posts: JSON.stringify(posts) })
-    })
+          if (err) throw err;
+          posts = results;
+          db.query('SELECT following FROM FOLLOWERS WHERE FOLLOWER = ?', [username], function(err, results, fields) {
+            console.log(results[0])
+            if (results[0] !== undefined) {
+              res.render('profiles', { title: 'User Profile', username: name, posts: JSON.stringify(posts), following: true })
+              console.log("its true")
+            } else {
+              res.render('profiles', { title: 'User Profile', username: name, posts: JSON.stringify(posts), following: false })
+              console.log("its false")
+            }
+          })
+        })
       }
     })
   } else {
