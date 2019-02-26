@@ -22,5 +22,14 @@ $(function () {
         .text(post.text)
         .appendTo(li);
   })
+
+  if (following) {
+    $('#follo').html('unfollow')
+    $('#follow').attr('action', `/user/unfollow/${name}`)
+  } else {
+    $('#follo').html('follow')
+    $('#follow').attr('action', `/user/follow/${name}`)
+  }
+
 });
 

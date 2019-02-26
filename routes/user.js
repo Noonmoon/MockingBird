@@ -52,6 +52,14 @@ router.post('/unfollow/:id', function(req, res) {
   }
 })
 
+function checkFollowStatus(profile, results) {
+  for (let i = 0; i < results.length; i++) {
+    if (results[i].following === profile) {
+      return true;
+    }
+  }
+  return false;
+}
 /* OTHER PROFILES
 -------------------------------------------------- */
 router.get('/profile/:id', function(req, res) {
@@ -72,12 +80,11 @@ router.get('/profile/:id', function(req, res) {
       if (username === name) {
         res.redirect('/user/profile')
       } else {
-        db.query('SELECT text, date FROM POSTS WHERE USER_ID = ?', [name.toString()], function(err, results, fields) {
+        db.query('SELECT text, date, user_id FROM POSTS WHERE USER_ID = ?', [name.toString()], function(err, results, fields) {
           if (err) throw err;
           posts = results;
           db.query('SELECT following FROM FOLLOWERS WHERE FOLLOWER = ?', [username], function(err, results, fields) {
-            console.log(results[0])
-            if (results[0] !== undefined) {
+            if (checkFollowStatus(name, results)) {
               res.render('profiles', { title: 'User Profile', username: name, posts: JSON.stringify(posts), following: true })
               console.log("its true")
             } else {
