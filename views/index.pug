@@ -2,9 +2,7 @@ extends layout.pug
 
 block append head
   script.
-    var auth = !{auth};
-    var posts = "#{posts}";
-    console.log(posts)
+    var auth = "#{auth}";
 
   script(src="https://unpkg.com/sweetalert/dist/sweetalert.min.js")
   script(type='text/javascript' src='/scripts/index.js')
@@ -14,7 +12,10 @@ block append head
 
 block content
   if auth
-
+    main(role='main').main
+      .container.posts
+        // Three columns of text below the carousel
+        .row#newsfeed
   else
     main(role='main').main
       .container.posts
