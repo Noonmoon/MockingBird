@@ -11,22 +11,23 @@ body {
 
 /* POST CARDS
 -------------------------------------------------- */
-.posts .col-lg-4 {
+#newsfeed .col-lg-4 {
   margin-bottom: 1.5rem;
   text-align: center;
 }
-.posts h2 {
+#newsfeed h2 {
   font-weight: 400;
 }
-.posts .col-lg-4 p {
+#newsfeed .col-lg-4 p {
   margin-right: 0.75rem;
   margin-left: 0.75rem;
 }
-.posts .col-lg-4 a {
+#newsfeed .col-lg-4 a {
+  min-width: 350px;
   border: solid;
   border-width: 2px;
   background-color: #BDC3C3;
-  border-color: #4A4250;
+  border-color: #4A4250 !important;
 }
 
 /* FOOTER

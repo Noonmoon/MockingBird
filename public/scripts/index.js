@@ -11,7 +11,7 @@ var escape = function(unsafe) {
 if (auth) {
   function createPostElement(post, escape) {
     var $post =
-      `<div>
+      `<div class="col-lg-4">
         <a class="btn postcard" href='#' role='button'>
           <img class="rounded-circle" src='data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==' width='100' height='100'>
           <h2>${post.user_id}</h2>
@@ -36,7 +36,7 @@ if (auth) {
 
     // grabs and renders all current tweets
     function grabPosts() {
-      $.get(`/post/noonmoon`, function(data) {
+      $.get(`/post/${auth}`, function(data) {
         renderPosts(data);
       });
     }

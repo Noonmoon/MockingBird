@@ -14,7 +14,7 @@ body {
 /* POST CARDS
 -------------------------------------------------- */
 
-.posts {
+#newsfeed {
   .col-lg-4 {
     margin-bottom: 1.5rem;
     text-align: center;
@@ -30,7 +30,7 @@ body {
     border: solid;
     border-width: 2px;
     background-color: #BDC3C3;
-    border-color: #4A4250;
+    border-color: #4A4250 !important;
   }
 }
 
