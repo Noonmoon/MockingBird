@@ -4,20 +4,25 @@ block append head
   script.
     var auth = "#{auth}";
 
-  script(src="https://unpkg.com/sweetalert/dist/sweetalert.min.js")
   script(type='text/javascript' src='/scripts/index.js')
   link(rel="favicon.ico" href="favicon.ico" type="image/x-icon")
-  link(rel="stylesheet" type="text/css" href="stylesheets/index.css")
   link(href='https://fonts.googleapis.com/css?family=Playfair+Display:700,900', rel='stylesheet')
 
 block content
   if auth
     main(role='main').main
+      h1.inner-header Your feed
       .container
         // Three columns of text below the carousel
         .row#newsfeed
   else
     main(role='main').main
+      div.cover
+        img#index-cover(src="/images/social.jpeg")
+        h1.page-title
+          | Welcome to MockingBird!
+
+      h1.inner-header Tops Posts
       .container.posts
         // Three columns of text below the carousel
         .row#newsfeed
@@ -41,9 +46,8 @@ block content
               h2 placeholder name
               p
                 | Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-              p
   // FOOTER
-  footer.container
+  footer#footer
     p.float-right
       a(href='#') Back to top
     p

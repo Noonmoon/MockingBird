@@ -1,14 +1,16 @@
 html
   head
     block head
+      link(href="https://fonts.googleapis.com/css?family=Lobster+Two|Merriweather" rel="stylesheet")
       link(rel="./favicon.ico" href="/images/favicon.ico" type="image/x-icon")
       link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous")
+      link(rel="stylesheet" type="text/css" href="./stylesheets/index.css")
       script(src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous")
       script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous")
   body
     header
       nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
-        a.navbar-brand(href='#') Mocking Bird
+        a.navbar-brand(href='/') Mocking Bird
         button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarCollapse', aria-controls='navbarCollapse', aria-expanded='false', aria-label='Toggle navigation')
           span.navbar-toggler-icon
         #navbarCollapse.collapse.navbar-collapse

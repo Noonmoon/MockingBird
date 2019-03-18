@@ -13,7 +13,7 @@ if (auth) {
     var $post =
       `<div class="col-lg-4">
         <a class="btn postcard" href='#' role='button'>
-          <img class="rounded-circle" src='data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==' width='100' height='100'>
+          <img class="rounded-circle float-left" src='data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==' width='100' height='100'>
           <h2>${post.user_id}</h2>
           <p>
             ${escape(post.text)}
